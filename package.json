@@ -1,0 +1,52 @@
+{
+    "name": "rss-aggregator",
+    "version": "1.0.0",
+    "description": "rss aggregator",
+    "type": "module",
+    "main": "./src/app.js",
+    "scripts": {
+        "lint": "npx eslint .",
+        "dev": "webpack serve",
+        "build": "export NODE_ENV=production && webpack",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LisaProgect/RSS-aggregator.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/LisaProgect/RSS-aggregator/issues"
+    },
+    "jest": {
+        "verbose": true,
+        "testURL": "http://localhost"
+    },
+    "homepage": "https://github.com/LisaProgect/RSS-aggregator#readme",
+    "devDependencies": {
+        "@babel/core": "^7.18.6",
+        "@babel/preset-env": "^7.18.6",
+        "autoprefixer": "^10.4.7",
+        "babel-loader": "^8.2.5",
+        "css-loader": "^6.7.1",
+        "eslint": "^8.18.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^5.5.0",
+        "jest": "^28.1.2",
+        "jest-cli": "^28.1.2",
+        "postcss": "^8.4.14",
+        "postcss-loader": "^7.0.0",
+        "style-loader": "^3.3.1",
+        "tailwindcss": "^3.1.4",
+        "url-loader": "^4.1.1",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-middleware": "^5.3.3",
+        "webpack-dev-server": "^4.9.2",
+        "webpack-hot-middleware": "^2.25.1"
+    }
+}
