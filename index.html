@@ -4,9 +4,119 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>RSS aggregator</title>
     </head>
     <body>
-        <h1 class="text-4xl text-blue-700">My Webpack + Tailwind App</h1>
+        <main class="container">
+            <section
+                class="bg-slate-700 mt-4 shadow-lg rounded-lg space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6"
+            >
+                <h1 class="font-semibold text-white text-2xl text-center">
+                    Start reading RSS (Really Simple Syndication)
+                </h1>
+                <form class="flex relative rss-form">
+                    <svg
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
+                        aria-hidden="true"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        />
+                    </svg>
+                    <input
+                        name="url"
+                        id="url-input"
+                        class="invalid:border-pink-500 invalid:text-pink-600 focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm"
+                        type="text"
+                        aria-label="Find RSS"
+                        placeholder="http://rss.cnn.com/rss/edition.rss"
+                    />
+                    <button
+                        class="rss-btn-form sm:ml-3 bg-indigo-600 hover:bg-indigo-700 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        type="submit"
+                    >
+                        Submit
+                    </button>
+                </form>
+                <p class="feedback text-white"></p>
+            </section>
+            <section class="grid md:grid-cols-3 max-w-7xl justify-center gap-8">
+                <div class="col-span-2">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Labore temporibus rem sequi, quos ratione distinctio
+                        voluptatum, eius ut dolor, excepturi tenetur. Reiciendis
+                        nam cupiditate dolores neque eos minima id. Assumenda!
+                    </p>
+                    <p>
+                        Deserunt voluptatem pariatur cupiditate. Officiis
+                        excepturi mollitia quos blanditiis cumque vitae vel!
+                        Esse incidunt quam quibusdam velit aliquam qui
+                        laboriosam. Culpa qui saepe, porro nisi optio animi
+                        tempore maiores. Possimus.
+                    </p>
+                    <p>
+                        Aspernatur nam placeat accusantium error assumenda,
+                        autem explicabo nemo sequi sapiente consectetur voluptas
+                        ex expedita nobis veritatis pariatur repellat, minima
+                        neque recusandae? Hic, numquam nisi ab at accusantium
+                        omnis quas.
+                    </p>
+                    <p>
+                        Odio vero quasi ab aliquid necessitatibus illo harum
+                        modi, laborum aliquam amet, facere eius optio sapiente
+                        sint expedita quisquam. Magni exercitationem in
+                        molestias alias corrupti quod culpa facere, eaque
+                        beatae.
+                    </p>
+                    <p>
+                        Omnis sunt sit ipsa dolorum ex porro, asperiores
+                        blanditiis soluta nemo cumque explicabo ab quod cum
+                        minus animi, distinctio quas voluptas veritatis.
+                        Consequatur, ex nam sit suscipit quae nulla quaerat.
+                    </p>
+                </div>
+                <div class="">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Quas, nihil amet sit earum sint deleniti esse provident
+                        nam. Ratione assumenda vero impedit eveniet rerum illum
+                        nam, quia magnam culpa expedita.
+                    </p>
+                    <p>
+                        Maxime vitae at voluptas, ullam excepturi tempore aut
+                        pariatur, dolore nostrum, in ratione impedit illo vero
+                        ducimus deleniti. Odit labore aut iusto aliquid ratione
+                        nesciunt nostrum dolorum sed esse aspernatur.
+                    </p>
+                    <p>
+                        Dolor, facilis libero quidem, rem commodi amet dolore,
+                        numquam quia itaque animi provident doloribus ex
+                        distinctio recusandae consequuntur sint at alias quasi
+                        doloremque porro omnis cumque. Deserunt quis minima
+                        voluptates.
+                    </p>
+                    <p>
+                        Distinctio fuga eligendi ipsum accusamus aperiam sit
+                        velit. Facere nesciunt enim, voluptatibus sunt veniam
+                        quod quidem, culpa quae officia nihil expedita omnis
+                        sapiente, nulla saepe aperiam perspiciatis explicabo
+                        magnam ipsum?
+                    </p>
+                    <p>
+                        Veniam odio hic, molestias distinctio beatae dolorem
+                        minima totam perspiciatis reiciendis magni iusto,
+                        consectetur incidunt laborum cum, nulla laboriosam ullam
+                        non pariatur. Aspernatur ea mollitia tenetur odio
+                        repellat soluta. Ipsum?
+                    </p>
+                </div>
+            </section>
+        </main>
     </body>
 </html>
