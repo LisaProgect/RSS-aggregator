@@ -7,13 +7,67 @@
         <title>RSS aggregator</title>
     </head>
     <body>
-        <main class="container">
+        <div
+            class="relative z-10 hidden"
+            aria-labelledby="modal-title"
+            aria-hidden="true"
+            role="dialog"
+            aria-modal="true"
+            id="modal"
+        >
+            <div
+                class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            ></div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div
+                    class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0"
+                >
+                    <div
+                        class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full"
+                    >
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div
+                                    class="mt-3 text-center sm:mt-0 sm:text-left"
+                                >
+                                    <h3
+                                        class="text-lg leading-6 font-medium text-gray-900"
+                                        id="modal-title"
+                                    ></h3>
+                                    <div class="mt-2">
+                                        <p class="text-sm text-gray-500"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+                        >
+                            <a
+                                target="_blank"
+                                type="button"
+                                data-close-modal
+                                class="btn-full w-full justify-center sm:w-auto"
+                            ></a>
+                            <button
+                                type="button"
+                                data-close-modal
+                                class="btn-empty mt-3 w-full justify-center sm:mt-0 sm:w-auto"
+                            ></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="container mx-auto">
             <section
                 class="bg-slate-700 mt-4 shadow-lg rounded-lg space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6"
             >
-                <h1 class="font-semibold text-white text-2xl text-center">
-                    Start reading RSS (Really Simple Syndication)
-                </h1>
+                <h1
+                    class="font-semibold text-white text-2xl text-center"
+                    id="title"
+                ></h1>
                 <form class="flex relative rss-form">
                     <svg
                         width="20"
@@ -31,57 +85,21 @@
                     <input
                         name="url"
                         id="url-input"
-                        class="invalid:border-pink-500 invalid:text-pink-600 focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm"
+                        class="focus:ring-2 input focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 rounded-md py-2 pl-10 ring-1 shadow-sm"
                         type="text"
                         aria-label="Find RSS"
                         placeholder="http://rss.cnn.com/rss/edition.rss"
                     />
-                    <button
-                        class="rss-btn-form sm:ml-3 bg-indigo-600 hover:bg-indigo-700 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        type="submit"
-                    >
+                    <button class="rss-btn-form btn-full" type="submit">
                         Submit
                     </button>
                 </form>
                 <p class="feedback text-white"></p>
             </section>
-            <section class="grid md:grid-cols-3 max-w-7xl justify-center gap-8">
-                <div class="col-span-2">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Labore temporibus rem sequi, quos ratione distinctio
-                        voluptatum, eius ut dolor, excepturi tenetur. Reiciendis
-                        nam cupiditate dolores neque eos minima id. Assumenda!
-                    </p>
-                    <p>
-                        Deserunt voluptatem pariatur cupiditate. Officiis
-                        excepturi mollitia quos blanditiis cumque vitae vel!
-                        Esse incidunt quam quibusdam velit aliquam qui
-                        laboriosam. Culpa qui saepe, porro nisi optio animi
-                        tempore maiores. Possimus.
-                    </p>
-                    <p>
-                        Aspernatur nam placeat accusantium error assumenda,
-                        autem explicabo nemo sequi sapiente consectetur voluptas
-                        ex expedita nobis veritatis pariatur repellat, minima
-                        neque recusandae? Hic, numquam nisi ab at accusantium
-                        omnis quas.
-                    </p>
-                    <p>
-                        Odio vero quasi ab aliquid necessitatibus illo harum
-                        modi, laborum aliquam amet, facere eius optio sapiente
-                        sint expedita quisquam. Magni exercitationem in
-                        molestias alias corrupti quod culpa facere, eaque
-                        beatae.
-                    </p>
-                    <p>
-                        Omnis sunt sit ipsa dolorum ex porro, asperiores
-                        blanditiis soluta nemo cumque explicabo ab quod cum
-                        minus animi, distinctio quas voluptas veritatis.
-                        Consequatur, ex nam sit suscipit quae nulla quaerat.
-                    </p>
-                </div>
-                <div class="">
+            <section class="flex justify-between mt-10 flex-wrap mx-5 md:mx-10">
+                <div class="grow w-3/5" id="posts"></div>
+
+                <div class="w-96">
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Quas, nihil amet sit earum sint deleniti esse provident

@@ -50,7 +50,10 @@
         "webpack-hot-middleware": "^2.25.1"
     },
     "dependencies": {
+        "axios": "^0.27.2",
+        "i18next": "^21.8.12",
         "on-change": "^4.0.1",
+        "uuid": "^8.3.2",
         "yup": "^0.32.11"
     }
 }

@@ -1,10 +1,24 @@
 import onChange from 'on-change';
 import renderStatusForm from './render/renderStatusForm.js';
 import renderMessage from './render/renderMessage.js';
+import renderPosts from './render/renderPosts.js';
 
-export default (state, elements) =>
-    onChange(state, (path, value) =>
-        path === 'form.fields.name' || console.log(path)
-            ? renderMessage(elements, state)
-            : renderStatusForm(elements, value)
-    );
+export default (state, elements, i18nextInstance) =>
+    onChange(state, (path, value) => {
+        switch (path) {
+            case 'form.fields.name':
+                renderMessage(elements, state, i18nextInstance);
+                break;
+
+            case 'form.processState':
+                renderStatusForm(elements, value);
+                break;
+
+            case 'posts':
+                renderPosts(elements, value, state, i18nextInstance);
+                break;
+
+            default:
+                break;
+        }
+    });

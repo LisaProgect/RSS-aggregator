@@ -1,45 +1,82 @@
-import validator from './validator.js';
+import i18next from 'i18next';
+import axios from 'axios';
+import { v4 } from 'uuid';
 import view from './view.js';
+import resources from './locales/index.js';
+import validator from './validator.js';
+import parser from './parser.js';
 
 export default () => {
+    const i18nextInstance = i18next.createInstance();
+    i18nextInstance.init({
+        lng: 'en',
+        debug: false,
+        resources,
+    });
+
     const elements = {
         form: document.querySelector('.rss-form'),
         input: document.querySelector('#url-input'),
         btn: document.querySelector('.rss-btn-form'),
         feedback: document.querySelector('.feedback'),
+        feeds: document.querySelector('#feeds'),
+        posts: document.querySelector('#posts'),
+        title: document.querySelector('#title'),
+        modal: document.querySelector('#modal'),
     };
+    elements.title.textContent = i18nextInstance.t('title');
     const state = {
+        ln: 'en',
         links: [],
-        errorApp: '',
+        posts: [],
+        feeds: [],
+        readPosts: [],
         form: {
             processState: '',
             fields: { name: { message: null, valid: true } },
         },
     };
+
+    const addPostId = (posts) =>
+        posts.map((post) => ({
+            id: v4(),
+            ...post,
+        }));
+
+    const routers = (url) => `https://cors-anywhere.herokuapp.com/${url}`;
+
+    const watchedState = view(state, elements, i18nextInstance);
+
     elements.form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
         const valueUser = formData.get('url');
 
-        validator(valueUser)
+        validator(valueUser, state.links)
             .then((url) => {
-                const watchedState = view(state, elements);
-                if (!state.links.includes(url)) {
-                    watchedState.links.push(url);
-                    watchedState.form.fields.name = {
-                        valid: true,
-                        message: 'RSS successfully loaded',
-                    };
-                } else {
-                    watchedState.form.fields.name = {
-                        valid: false,
-                        message: 'url already exists',
-                    };
-                }
+                watchedState.form.processState = 'loading';
+                return axios.get(routers(url));
+            })
+            .then((response) => {
+                const rssData = parser(response.data);
+                watchedState.links = [
+                    ...state.links,
+                    response.headers['x-final-url'],
+                ];
+                watchedState.feeds = [...state.feeds, rssData.feed];
+                const posts = addPostId(rssData.posts);
+                watchedState.posts = [...state.posts, ...posts];
+                watchedState.form.processState = 'sent';
+                watchedState.form.fields.name = {
+                    message: 'sent',
+                    valid: true,
+                };
             })
             .catch((err) => {
-                view(state, elements).form.fields.name = {
+                console.error(err.message);
+                watchedState.form.processState = 'failed';
+                watchedState.form.fields.name = {
                     message: err.message,
                     valid: false,
                 };
