@@ -15,6 +15,11 @@ export default (elements, posts, state, i18nextInstance) => {
         ul.append(li);
         const link = document.createElement('a');
         link.classList.add('text-indigo-800');
+        if (state.readPosts.includes(post.id)) {
+            link.classList.add('font-normal');
+        } else {
+            link.classList.add('font-bold');
+        }
         link.setAttribute('href', post.link);
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
@@ -25,6 +30,10 @@ export default (elements, posts, state, i18nextInstance) => {
         btn.textContent = i18nextInstance.t('btnDetail');
         li.append(btn);
         btn.addEventListener('click', () => {
+            state.readPosts.push(post.id);
+            link.classList.add('font-normal');
+            link.classList.remove('font-bold');
+
             renderModal(elements, state, i18nextInstance, post);
         });
     });

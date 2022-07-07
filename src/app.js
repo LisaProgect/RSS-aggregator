@@ -43,10 +43,8 @@ export default () => {
             ...post,
         }));
 
-    const routers = (url) =>
-        process.env.NODE_ENV === 'development'
-            ? `https://cors-anywhere.herokuapp.com/${url}`
-            : url;
+    const routers = (target) =>
+        `https://scrappy-php.herokuapp.com/?url=${target}`;
 
     const watchedState = view(state, elements, i18nextInstance);
 
@@ -59,14 +57,11 @@ export default () => {
         validator(valueUser, state.links)
             .then((url) => {
                 watchedState.form.processState = 'loading';
+                watchedState.links = [...state.links, url];
                 return axios.get(routers(url));
             })
             .then((response) => {
                 const rssData = parser(response.data);
-                watchedState.links = [
-                    ...state.links,
-                    response.headers['x-final-url'],
-                ];
                 watchedState.feeds = [...state.feeds, rssData.feed];
                 const posts = addPostId(rssData.posts);
                 watchedState.posts = [...state.posts, ...posts];
@@ -77,7 +72,6 @@ export default () => {
                 };
             })
             .catch((err) => {
-                console.error(err.message);
                 watchedState.form.processState = 'failed';
                 watchedState.form.fields.name = {
                     message: err.message,
