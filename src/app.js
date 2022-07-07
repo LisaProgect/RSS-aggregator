@@ -43,7 +43,10 @@ export default () => {
             ...post,
         }));
 
-    const routers = (url) => `https://cors-anywhere.herokuapp.com/${url}`;
+    const routers = (url) =>
+        process.env.NODE_ENV === 'development'
+            ? `https://cors-anywhere.herokuapp.com/${url}`
+            : url;
 
     const watchedState = view(state, elements, i18nextInstance);
 

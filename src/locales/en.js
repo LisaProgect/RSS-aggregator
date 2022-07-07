@@ -5,6 +5,7 @@ export default {
         sent: 'RSS sent successfully',
         title: 'Start reading RSS (Really Simple Syndication)',
         posts: 'Posts',
+        feeds: 'Feeds',
         btnDetail: 'Detail',
         btnCancel: 'Cancel',
     },
